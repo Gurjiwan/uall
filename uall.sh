@@ -14,11 +14,11 @@ printf "${Yellow} Running ${NC}pacman -Syu \n"
 sudo pacman -Syu
 printf "${Cyan} ---	END	---\n"
 
-if command -v yay > /dev/null
+if command -v yay > /dev/null; then
     printf "${Yellow} Running ${NC}yay -Sua \n"
     yay -Sua
     printf "${Cyan} ---	END	---\n" 
-elif command -v paru > /dev/null
+elif command -v paru > /dev/null; then
     printf "${Yellow} Running ${NC}paru -Sua \n"
     paru -Sua
     printf "${Cyan} ---	END	---\n" 
@@ -27,7 +27,7 @@ else
     printf "${Cyan} ---	END	---\n" 
 fi
 
-if command -v flatpak > /dev/null
+if command -v flatpak > /dev/null; then
     printf "${Yellow} Running ${NC}flatpak update......\n"
     flatpak update
     printf "${Cyan} ---	END	---\n" 
