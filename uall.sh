@@ -8,13 +8,30 @@
 Cyan='\033[0;36m' # Simple shell variables to hold color values
 Yellow='\033[1;33m' # shell variables can be called by ${Variable name}
 NC='\033[0m' # No color
+RED='\033[0;31m' # RED color value
 
 printf "${Yellow} Running ${NC}pacman -Syu \n"
 sudo pacman -Syu
-printf "${Cyan} ---	END	---\n" 
-printf "${Yellow} Running ${NC}yay -Sua \n"
-yay -Sua
-printf "${Cyan} ---	END	---\n" 
-printf "${Yellow} Running ${NC}flatpak update......\n"
-flatpak update
-printf "${Cyan} ---	END	---\n" 
+printf "${Cyan} ---	END	---\n"
+
+if command -v yay > /dev/null
+    printf "${Yellow} Running ${NC}yay -Sua \n"
+    yay -Sua
+    printf "${Cyan} ---	END	---\n" 
+elif command -v paru > /dev/null
+    printf "${Yellow} Running ${NC}paru -Sua \n"
+    paru -Sua
+    printf "${Cyan} ---	END	---\n" 
+else
+    printf "${RED}AUR helper not found.....skipping..."
+    printf "${Cyan} ---	END	---\n" 
+fi
+
+if command -v flatpak > /dev/null
+    printf "${Yellow} Running ${NC}flatpak update......\n"
+    flatpak update
+    printf "${Cyan} ---	END	---\n" 
+else
+    printf "${RED}flatpak command not found.....skipping..."
+    printf "${Cyan} ---	END	---\n" 
+fi
