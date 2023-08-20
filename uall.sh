@@ -24,7 +24,6 @@ elif command -v paru > /dev/null; then
     printf "${Cyan} ---	END	---\n" 
 else
     printf "${RED}AUR helper not found.....skipping..."
-    printf "${Cyan} ---	END	---\n" 
 fi
 
 if command -v flatpak > /dev/null; then
@@ -33,5 +32,4 @@ if command -v flatpak > /dev/null; then
     printf "${Cyan} ---	END	---\n" 
 else
     printf "${RED}flatpak command not found.....skipping..."
-    printf "${Cyan} ---	END	---\n" 
 fi
