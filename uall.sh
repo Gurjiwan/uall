@@ -23,13 +23,11 @@ elif command -v paru > /dev/null; then
     paru -Sua
     printf "${Cyan} ---	END	---\n" 
 else
-    printf "${RED}AUR helper not found.....skipping..."
+    printf "${Yellow}yay and paru are the supported AUR helpers\n"
 fi
 
 if command -v flatpak > /dev/null; then
     printf "${Yellow} Running ${NC}flatpak update......\n"
     flatpak update
     printf "${Cyan} ---	END	---\n" 
-else
-    printf "${RED}flatpak command not found.....skipping..."
 fi
