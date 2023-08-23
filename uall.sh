@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 # Script to run all update commands
 
 # Using \033[{ANSI escae code}m format to define colors for printf.
@@ -10,9 +10,15 @@ Yellow='\033[1;33m' # shell variables can be called by ${Variable name}
 NC='\033[0m' # No color
 RED='\033[0;31m' # RED color value
 
-printf "${Yellow} Running ${NC}pacman -Syu \n"
-sudo pacman -Syu
-printf "${Cyan} ---	END	---\n"
+if command -v doas > /dev/null; then
+    printf "${Yellow} Running ${NC}doas pacman -Syu \n"
+    doas pacman -Syu
+    printf "${Cyan} ---	END	---\n"
+else
+    printf "${Yellow} Running ${NC}sudo pacman -Syu \n"
+    sudo pacman -Syu
+    printf "${Cyan} ---	END	---\n"
+fi
 
 if command -v yay > /dev/null; then
     printf "${Yellow} Running ${NC}yay -Sua \n"
@@ -23,7 +29,7 @@ elif command -v paru > /dev/null; then
     paru -Sua
     printf "${Cyan} ---	END	---\n" 
 else
-    printf "${Yellow}yay and paru are the supported AUR helpers\n"
+    printf "${Yellow}yay and paru are the only supported AUR helpers\n"
 fi
 
 if command -v flatpak > /dev/null; then
