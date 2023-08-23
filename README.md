@@ -1,7 +1,7 @@
 **uall(update all) is a simple shell script to arch linux packages**
 
 DEPENDENSIES:
-sudo : to run sudo pacman -Syu
+sudo or doas : to run pacman with superuser privileges
 
 INSTALL STEPS:
 
