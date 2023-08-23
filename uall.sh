@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 # Script to run all update commands
 
 # Using \033[{ANSI escae code}m format to define colors for printf.
