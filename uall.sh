@@ -9,7 +9,9 @@ Cyan='\033[0;36m' # Simple shell variables to hold color values
 Yellow='\033[1;33m' # shell variables can be called by ${Variable name}
 NC='\033[0m' # No color
 RED='\033[0;31m' # RED color value
+aur='0' #Variable to store the AUR Helper command
 
+# if statement for pacman -Syu
 if command -v doas > /dev/null; then
     printf "${Yellow} Running ${NC}doas pacman -Syu \n"
     doas pacman -Syu
@@ -20,16 +22,23 @@ else
     printf "${Cyan} ---	END	---\n"
 fi
 
-if command -v yay > /dev/null; then
-    printf "${Yellow} Running ${NC}yay -Sua \n"
-    yay -Sua
-    printf "${Cyan} ---	END	---\n" 
-elif command -v paru > /dev/null; then
-    printf "${Yellow} Running ${NC}paru -Sua \n"
-    paru -Sua
+#if statement to decide which aur helper is present
+if command -v paru > /dev/null; then
+    aur='paru -Sua'
+elif command -v yay > /dev/null; then
+    aur='yay -Sua'
+fi
+
+if [[ $aur == 0 ]]; then
+    printf "${Yellow}yay and paru are the only supported AUR helpers\n"
+elif [[ $EUID == 0 ]]; then #will prevent the aur helper like yay and paru from running as root
+    printf "${Yellow} Running ${NC}${aur} \n"
+    sudo -u nobody $aur #if running as root run aur helper command as nobody user
     printf "${Cyan} ---	END	---\n" 
 else
-    printf "${Yellow}yay and paru are the only supported AUR helpers\n"
+    printf "${Yellow} Running ${NC}${aur} \n"
+    command $aur
+    printf "${Cyan} ---	END	---\n" 
 fi
 
 if command -v flatpak > /dev/null; then
