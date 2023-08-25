@@ -10,17 +10,19 @@ Yellow='\033[1;33m' # shell variables can be called by ${Variable name}
 NC='\033[0m' # No color
 RED='\033[0;31m' # RED color value
 aur='0' #Variable to store the AUR Helper command
+super='0' # variable to check between sudo and doas
 
-# if statement for pacman -Syu
-if command -v doas > /dev/null; then
-    printf "${Yellow} Running ${NC}doas pacman -Syu \n"
-    doas pacman -Syu
-    printf "${Cyan} ---	END	---\n"
-else
-    printf "${Yellow} Running ${NC}sudo pacman -Syu \n"
-    sudo pacman -Syu
-    printf "${Cyan} ---	END	---\n"
+if [[ $EUID == 0 ]];then
+    super=''
+elif command -v doas > /dev/null;then
+    super='doas'
+elif command -v sudo > /dev/null;then
+    super='sudo'
 fi
+
+printf "${Yellow} Running ${NC}${super} pacman -Syu \n"
+command ${super} pacman -Syu
+printf "${Cyan} ---	END	---\n"
 
 #if statement to decide which aur helper is present
 if command -v paru > /dev/null; then
