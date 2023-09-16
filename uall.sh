@@ -11,6 +11,7 @@ NC='\033[0m' # No color
 RED='\033[0;31m' # RED color value
 aur='0' #Variable to store the AUR Helper command
 super='0' # variable to check between sudo and doas
+myuser='nobody'
 
 if [[ $EUID == 0 ]];then
     super=''
@@ -21,7 +22,7 @@ elif command -v sudo > /dev/null;then
 fi
 
 printf "${Yellow} Running ${NC}${super} pacman -Syu \n"
-command ${super} pacman -Syu
+command $super pacman -Syu
 printf "${Cyan} ---	END	---\n"
 
 #if statement to decide which aur helper is present
@@ -34,8 +35,11 @@ fi
 if [[ $aur == 0 ]]; then
     printf "${Yellow}yay and paru are the only supported AUR helpers\n"
 elif [[ $EUID == 0 ]]; then #will prevent the aur helper like yay and paru from running as root
-    printf "${Yellow} Running ${NC}${aur} \n"
-    sudo -u nobody $aur #if running as root run aur helper command as nobody user
+    printf "${RED} $aur is not recommended to be used as root"
+    printf "${Yellow} Please select an alternate username other than root"
+    read -p "Enter your Linux user: " myuser
+    printf "${Yellow} Running ${NC} ${super} -u ${myuser} ${aur} \n"
+    $super -u $myuser $aur #if running as root run aur helper command as nobody user
     printf "${Cyan} ---	END	---\n" 
 else
     printf "${Yellow} Running ${NC}${aur} \n"
@@ -44,7 +48,7 @@ else
 fi
 
 if command -v flatpak > /dev/null; then
-    printf "${Yellow} Running ${NC}flatpak update......\n"
-    flatpak update
+    printf "${Yellow} Running ${NC}${super} flatpak update......\n"
+    $super flatpak update
     printf "${Cyan} ---	END	---\n" 
 fi
