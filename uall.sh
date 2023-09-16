@@ -10,15 +10,20 @@ Yellow='\033[1;33m' # shell variables can be called by ${Variable name}
 NC='\033[0m' # No color
 RED='\033[0;31m' # RED color value
 aur='0' #Variable to store the AUR Helper command
-super='0' # variable to check between sudo and doas
+super='0' # variable to use for commands that require super user
 myuser='nobody'
+super2='' #variable that selects between doas and sudo
+
+if command -v doas > /dev/null;then
+    super2='doas'
+else
+    super2='sudo'
+fi
 
 if [[ $EUID == 0 ]];then
     super=''
-elif command -v doas > /dev/null;then
-    super='doas'
-elif command -v sudo > /dev/null;then
-    super='sudo'
+else
+    super=${super2}
 fi
 
 printf "${Yellow} Running ${NC}${super} pacman -Syu \n"
@@ -35,11 +40,11 @@ fi
 if [[ $aur == 0 ]]; then
     printf "${Yellow}yay and paru are the only supported AUR helpers\n"
 elif [[ $EUID == 0 ]]; then #will prevent the aur helper like yay and paru from running as root
-    printf "${RED} $aur is not recommended to be used as root"
-    printf "${Yellow} Please select an alternate username other than root"
+    printf "${RED} $aur is not recommended to be run as root\n"
+    printf "${Yellow} Please select an alternate username other than root${NC}\n"
     read -p "Enter your Linux user: " myuser
-    printf "${Yellow} Running ${NC} ${super} -u ${myuser} ${aur} \n"
-    $super -u $myuser $aur #if running as root run aur helper command as nobody user
+    printf "${Yellow} Running ${NC} ${super2} -u ${myuser} ${aur} \n"
+    $super2 -u $myuser $aur #if running as root run aur helper command as nobody user
     printf "${Cyan} ---	END	---\n" 
 else
     printf "${Yellow} Running ${NC}${aur} \n"
