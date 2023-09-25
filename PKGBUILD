@@ -1,8 +1,8 @@
 
 # Maintainer: Gurjiwan Singh <gurrjiwan@gmail.com>
-pkgname=uall.sh
-pkgver=v1.0.1
-pkgrel=1
+pkgname=uall
+pkgver=1.0.3
+pkgrel=2
 pkgdesc="Single Bash script to update packages using pacman yay/paru and flatpak"
 arch=('any')
 url="https://github.com/Gurjiwan/uall"
