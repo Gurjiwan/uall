@@ -14,5 +14,5 @@ source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
 md5sums=('SKIP')
 
 package() {
-	install -D -t  "$pkgdir/usr/bin" "$srcdir/uall-1.0.1/uall.sh"
+	install -D -t  "$pkgdir/usr/bin" "$srcdir/$pkgname-$pkgver/$pkgname"
 }
