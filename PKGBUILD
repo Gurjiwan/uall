@@ -10,7 +10,7 @@ license=('GPL3')
 provides=("${pkgname}")
 depends=('pacman>5')
 optdepends=('sudo: Privilege elevation/de-elevation' 'doas: Privilege elevation/de-elevation' 'yay: Update AUR package' 'paru: Update AUR package' 'flatpak: flatpak update')
-source=("https://github.com/Gurjiwan/uall/archive/refs/tags/${pkgver}.tar.gz")
+source=("${url}/archive/refs/tags/${pkgver}.tar.gz")
 md5sums=('SKIP')
 
 package() {
