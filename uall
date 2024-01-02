@@ -30,10 +30,6 @@ printf "${Yellow} Running ${NC}${super} pacman -Syu \n"
 command $super pacman -Syu
 printf "${Cyan} ---	END	---\n"
 
-printf "${Yellow} Running ${NC}${super} pacman -Fy to update file database. \n"
-command $super pacman -Fy
-printf "Note: File database is used to search for a file with pacman -F <pkgname>.\n${Cyan} ---	END	---\n"
-
 #if statement to decide which aur helper is present
 if command -v paru > /dev/null; then
     aur='paru -Sua'
