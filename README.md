@@ -5,7 +5,7 @@ sudo or doas : to run pacman with superuser privileges
 
 INSTALL STEPS:
 
-Just add the downloaded uall.sh file to the bin directory or add the git repository to the PATH variable.
+Just add the downloaded uall script file to the bin directory or add the git repository to the PATH variable.
 
 USAGE:
 just run the command: uall
