@@ -28,7 +28,7 @@ fi
 
 printf "${Yellow} Running ${NC}${super} pacman -Syu \n"
 command $super pacman -Syu
-printf "${Cyan} ---	END	---\n"
+printf "${Cyan} ---	END	---\n${NC}"
 
 #if statement to decide which aur helper is present
 if command -v paru > /dev/null; then
@@ -45,11 +45,11 @@ elif [[ $EUID == 0 ]]; then #will prevent the aur helper like yay and paru from 
     read -p "Enter your Linux user: " myuser
     printf "${Yellow} Running ${NC} ${super2} -u ${myuser} ${aur} \n"
     $super2 -u $myuser $aur #if running as root run aur helper command as nobody user
-    printf "${Cyan} ---	END	---\n" 
+    printf "${Cyan} ---	END	---\n${NC}" 
 else
     printf "${Yellow} Running ${NC}${aur} \n"
     command $aur
-    printf "${Cyan} ---	END	---\n" 
+    printf "${Cyan} ---	END	---\n${NC}" 
 fi
 
 if command -v flatpak > /dev/null; then
@@ -57,5 +57,5 @@ if command -v flatpak > /dev/null; then
     $super flatpak update
     printf "\n ${Yellow} Running ${NC}${super} flatpak remove --unused.. \n"
     $super flatpak remove --unused
-    printf "${Cyan} ---	END	---\n" 
+    printf "${Cyan} ---	END	---\n${NC}" 
 fi
