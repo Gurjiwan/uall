@@ -1,7 +1,5 @@
 **uall(update all) is a simple shell script to arch linux packages**
 
-**Latest Update:** Removing flatpak update as a lag is observed during command completion.Note here, flatpak command to remove unused packages is still included.
-
 DEPENDENSIES:
 sudo or doas : to run pacman with superuser privileges
 

@@ -57,6 +57,6 @@ if command -v flatpak > /dev/null; then
 	printf "\n ${Yellow} Running ${NC} flatpak update .. \n"
 	flatpak update
     printf "\n ${Yellow} Running ${NC}${super} flatpak remove --unused.. \n"
-    $super flatpak remove --unused
+    flatpak remove --unused
     printf "${Cyan} ---	END	---\n${NC}" 
 fi
