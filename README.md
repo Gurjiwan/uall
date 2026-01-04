@@ -9,8 +9,11 @@ sudo or doas : to run pacman with superuser privileges
 Just add the downloaded uall script file to the bin directory or add the git repository to the PATH variable.
 
 # USAGE:
-just run the command: uall
-in the terminal and it will start updating using pacman, yay/paru and flatpak.
+just run the command: 
+
+`uall`
+
+It will start updating using pacman, yay/paru and flatpak.
 
 **NOTE: sudo is already included in the shell script hence is not required while running the command**
 
