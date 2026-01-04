@@ -54,9 +54,16 @@ fi
 
 if command -v flatpak > /dev/null; then
 	flatpak list > /dev/null
-	printf "\n ${Yellow} Running ${NC} flatpak update .. \n"
+	printf "${Yellow} Running ${NC} flatpak update .. \n"
 	flatpak update
-    printf "\n ${Yellow} Running ${NC}${super} flatpak remove --unused.. \n"
+	printf "${Cyan} --Update End--\n${NS}"
+    printf "${Yellow} Running ${NC} flatpak remove --unused.. \n"
     flatpak remove --unused
+    printf "${Cyan} ---	END	---\n${NC}" 
+fi
+
+if command -v rustup > /dev/null; then
+	printf "${Yellow} Running ${NC} rustup update ..\n"
+	rustup update
     printf "${Cyan} ---	END	---\n${NC}" 
 fi
