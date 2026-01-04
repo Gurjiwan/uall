@@ -12,7 +12,7 @@ Just add the downloaded uall script file to the bin directory or add the git rep
 just run the command: uall
 in the terminal and it will start updating using pacman, yay/paru and flatpak.
 
-# NOTE: sudo is already included in the shell script hence is not required while running the command
+**NOTE: sudo is already included in the shell script hence is not required while running the command**
 
 # LATEST RELEASE:
 Added rustup updates in the shell script.
